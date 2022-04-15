@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace APICatalogo.Controllers
 {
     [Route("[controller]")]
+    [ApiController]
     public class ProdutosController : Controller
     {
 
@@ -16,10 +17,10 @@ namespace APICatalogo.Controllers
         }
 
         [HttpGet]
-        public ActionResult <IEnumerable<Produto>> Get()
+        public ActionResult<IEnumerable<Produto>> Get()
         {
             var produtos = _context.Produtos.ToList();
-            if(produtos is null)
+            if (produtos is null)
             {
                 return NotFound("Nenhum produto foi encontrado");
             }
@@ -27,16 +28,29 @@ namespace APICatalogo.Controllers
             return Ok(produtos);
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}", Name = "ObterProduto")]
         public ActionResult<Produto> Get(int id)
         {
             var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == id);
-            if(produto is null)
+            if (produto is null)
             {
                 return NotFound("Esse produto não foi encontrado...");
             }
 
-            return Ok(produto);
+            return produto;
+        }
+
+        [HttpPost]
+        public ActionResult Post(Produto produto)
+        {
+            if (produto is null)
+                return BadRequest();
+            
+            _context.Produtos.Add(produto); // Salva na memória
+            _context.SaveChanges(); // Persiste no banco
+
+            return new CreatedAtRouteResult("ObterProduto",
+                new { id = produto.ProdutoId }, produto);
         }
     }
 }
