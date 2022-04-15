@@ -4,7 +4,7 @@
 
 Essa foi minha primeira API desenvolvida seguindo as orientações do professor Macoratti no curso [Curso Web API ASP .NET Core Essencial (.NET 6).](http://https://www.udemy.com/course/curso-web-api-asp-net-core-essencial/ "Curso Web API ASP .NET Core Essencial (.NET 6)")
 
-O projeto consiste em criar uma API de catálogo que relacionado produtos e categorias de uma forma bem simples mas bastante completa.
+O funcionamento é bem simples, o usuário pode visualizar, criar, editar e deletar (CRUD) produtos e categorias.
 
 Fui capaz de compreender os conceitos básicos sobre a criação de uma API em ASP.NET utilizando o Entity Framework e banco de dados MySQL.
 
