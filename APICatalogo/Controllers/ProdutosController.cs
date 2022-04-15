@@ -21,9 +21,7 @@ namespace APICatalogo.Controllers
         {
             var produtos = _context.Produtos.ToList();
             if (produtos is null)
-            {
                 return NotFound("Nenhum produto foi encontrado");
-            }
 
             return Ok(produtos);
         }
@@ -33,11 +31,9 @@ namespace APICatalogo.Controllers
         {
             var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == id);
             if (produto is null)
-            {
                 return NotFound("Esse produto não foi encontrado...");
-            }
 
-            return produto;
+            return Ok(produto);
         }
 
         [HttpPost]
